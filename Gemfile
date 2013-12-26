@@ -3,20 +3,27 @@ ruby '2.0.0'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.1'
+#Database choice is postgresql
 gem 'pg', '0.17.0'
+
+#Bootstrap for ui elements
 gem 'bootstrap-sass', '2.3.2.0'
+#Crypting needed for the users has_secure_password
 gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
+  #Rspec testing and automation with guard using spork server
   gem 'rspec-rails', '2.13.1'
   gem 'guard-rspec', '2.5.0'
   gem 'spork-rails', '4.0.0'
   gem 'guard-spork', '1.5.0'
   gem 'childprocess', '0.3.6'
 
-  gem 'guard-livereload', require: false #automatic page refreshes on chrome
-
   gem 'terminal-notifier-guard' #OS X notifications from guard
+
+  #Only used by cucumber testing
+  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 
 group :test do
