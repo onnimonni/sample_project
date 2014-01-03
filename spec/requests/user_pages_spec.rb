@@ -22,6 +22,7 @@ describe "UserPages" do
     before { visit signup_path }
 
     let(:submit) { "Create my account" }
+    let(:user) { FactoryGirl.create(:user)}
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -31,17 +32,14 @@ describe "UserPages" do
         before {click_button submit}
 
         it {should have_title('Sign up')}
-        it {should have_content('error')}
+        it {should have_error_message}
         it {should have_content('be blank')}
       end
     end
 
     describe "with valid information" do
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
-        fill_in "Password",     with: "foobar"
-        fill_in "Confirmation", with: "foobar"
+        valid_signup
       end
 
       it "should create a user" do
@@ -54,7 +52,7 @@ describe "UserPages" do
 
         it {should have_link('Sign out')}
         it {should have_title(user.name)}
-        it {should have_selector('div.alert.alert-success', text: 'Welcome')}
+        it {should have_success_message('Welcome')}
       end
     end
   end

@@ -6,8 +6,21 @@ def valid_signin(user)
   click_button "Sign in"
 end
 
+def valid_signup(user)
+  fill_in "Name", user.name
+  fill_in "Email", user.email
+  fill_in "Password", user.password
+  fill_in "Confirmation", user.password_confirmation
+end
+
 RSpec::Matchers.define :have_error_message do |message|
   match do |page|
     expect(page).to have_selector('div.alert.alert-error', text: message)
+  end
+end
+
+RSpec::Matchers.define :have_success_message do |message|
+  match do |page|
+    expect(page).to have_selector('div.alert.alert-success', text: message)
   end
 end
