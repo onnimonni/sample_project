@@ -7,10 +7,10 @@ def valid_signin(user)
 end
 
 def valid_signup(user)
-  fill_in "Name", user.name
-  fill_in "Email", user.email
-  fill_in "Password", user.password
-  fill_in "Confirmation", user.password_confirmation
+  fill_in "Name",         with: user.email
+  fill_in "Email",        with: user.email
+  fill_in "Password",     with: user.password
+  fill_in "Confirmation", with: user.password_confirmation
 end
 
 RSpec::Matchers.define :have_error_message do |message|

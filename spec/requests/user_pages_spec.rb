@@ -38,8 +38,9 @@ describe "UserPages" do
     end
 
     describe "with valid information" do
+      let(:user) { FactoryGirl.build(:user) }
       before do
-        valid_signup
+        valid_signup(user)
       end
 
       it "should create a user" do
@@ -48,10 +49,10 @@ describe "UserPages" do
 
       describe "after saving the user" do
         before { click_button submit}
-        let(:user) { User.find_by(email: 'user@example.com')}
+        let(:registered) { User.find_by(email: 'teemu.testi@example.com')}
 
         it {should have_link('Sign out')}
-        it {should have_title(user.name)}
+        it {should have_title(registered.name)}
         it {should have_success_message('Welcome')}
       end
     end
